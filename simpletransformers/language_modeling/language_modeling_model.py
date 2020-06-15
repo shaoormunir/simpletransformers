@@ -61,6 +61,12 @@ from transformers import (
     OpenAIGPTConfig,
     OpenAIGPTLMHeadModel,
     OpenAIGPTTokenizer,
+    XLNetConfig,
+    XLNetLMHeadModel,
+    XLNetTokenizer,
+    TransfoXLConfig,
+    TransfoXLLMHeadModel,
+    TransfoXLTokenizer,
     PreTrainedModel,
     PreTrainedTokenizer,
     RobertaConfig,
@@ -93,8 +99,9 @@ MODEL_CLASSES = {
     "longformer": (LongformerConfig, LongformerForMaskedLM, LongformerTokenizer),
     "openai-gpt": (OpenAIGPTConfig, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer),
     "roberta": (RobertaConfig, RobertaForMaskedLM, RobertaTokenizer),
+    "xlnet": (XLNetConfig, XLNetLMHeadModel, XLNetTokenizer),
+    "transfo-xl": (TransfoXLConfig, TransfoXLLMHeadModel, TransfoXLTokenizer),
 }
-
 
 class LanguageModelingModel:
     def __init__(
