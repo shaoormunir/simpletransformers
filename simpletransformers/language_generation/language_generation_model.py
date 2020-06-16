@@ -10,6 +10,9 @@ import torch
 from simpletransformers.config.global_args import global_args
 from simpletransformers.language_generation.language_generation_utils import PREPROCESSING_FUNCTIONS
 from transformers import (
+    AutoConfig,
+    AutoTokenizer,
+    AutoModelWithLMHead,
     CTRLConfig,
     CTRLLMHeadModel,
     CTRLTokenizer,
@@ -39,7 +42,6 @@ class LanguageGenerationModel:
     def __init__(
         self, model_type, model_name, args=None, use_cuda=True, cuda_device=-1, **kwargs,
     ):
-
         """
         Initializes a LanguageGenerationModel model.
 
@@ -59,6 +61,8 @@ class LanguageGenerationModel:
             "xlnet": (XLNetConfig, XLNetLMHeadModel, XLNetTokenizer),
             "transfo-xl": (TransfoXLConfig, TransfoXLLMHeadModel, TransfoXLTokenizer),
             "xlm": (XLMConfig, XLMWithLMHeadModel, XLMTokenizer),
+            "bart": (AutoConfig, AutoModelWithLMHead, AutoTokenizer),
+            "t5": (AutoConfig, AutoModelWithLMHead, AutoTokenizer),
         }
 
         if args and "manual_seed" in args:
@@ -135,7 +139,6 @@ class LanguageGenerationModel:
         self.model.to(self.device)
 
     def generate(self, prompt=None, args=None, verbose=True):
-
         """
         Generate text using a LanguageGenerationModel
 

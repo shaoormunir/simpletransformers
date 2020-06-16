@@ -101,6 +101,8 @@ MODEL_CLASSES = {
     "roberta": (RobertaConfig, RobertaForMaskedLM, RobertaTokenizer),
     "xlnet": (XLNetConfig, XLNetLMHeadModel, XLNetTokenizer),
     "transfo-xl": (TransfoXLConfig, TransfoXLLMHeadModel, TransfoXLTokenizer),
+    "bart": (AutoConfig, AutoModelWithLMHead, AutoTokenizer),
+    "t5": (AutoConfig, AutoModelWithLMHead, AutoTokenizer), 
 }
 
 class LanguageModelingModel:
