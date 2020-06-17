@@ -214,10 +214,16 @@ class LanguageGenerationModel:
             # Remove all text after the stop token
             text = text[: text.find(args["stop_token"]) if args["stop_token"] else None]
 
+            # # Add the prompt at the beginning of the sequence. Remove the excess text that was used for pre-processing
+            # total_sequence = (
+            #     prompt_text + text[len(tokenizer.decode(encoded_prompt[0], clean_up_tokenization_spaces=True)) :]
+            # )
+
             # Add the prompt at the beginning of the sequence. Remove the excess text that was used for pre-processing
             total_sequence = (
-                prompt_text + text[len(tokenizer.decode(encoded_prompt[0], clean_up_tokenization_spaces=True)) :]
+                text[len(tokenizer.decode(encoded_prompt[0], clean_up_tokenization_spaces=True)) :]
             )
+
 
             generated_sequences.append(total_sequence)
             if verbose:
