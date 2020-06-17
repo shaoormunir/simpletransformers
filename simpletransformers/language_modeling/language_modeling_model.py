@@ -204,7 +204,7 @@ class LanguageModelingModel:
         self.args["model_name"] = model_name
         self.args["model_type"] = model_type
 
-        config_class, model_class,  _class = MODEL_CLASSES[model_type]
+        config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
         self.tokenizer_class = tokenizer_class
         new_tokenizer = False
 
