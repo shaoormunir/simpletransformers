@@ -45,12 +45,12 @@ def prepare_xlm_input(args, model, tokenizer, prompt_text):
 
 
 def prepare_xlnet_input(args, _, tokenizer, prompt_text):
-    prompt_text = (args["padding_text"] if args["padding_text"] else PADDING_TEXT) + prompt_text
+    # prompt_text = (args["padding_text"] if args["padding_text"] else PADDING_TEXT) + prompt_text
     return prompt_text
 
 
 def prepare_transfoxl_input(args, _, tokenizer, prompt_text):
-    prompt_text = (args["padding_text"] if args["padding_text"] else PADDING_TEXT) + prompt_text
+    # prompt_text = (args["padding_text"] if args["padding_text"] else PADDING_TEXT) + prompt_text
     return prompt_text
 
 
