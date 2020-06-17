@@ -76,6 +76,12 @@ from transformers import (
     LongformerForMaskedLM,
     LongformerTokenizer,
     get_linear_schedule_with_warmup,
+    T5Config,
+    T5Tokenizer,
+    T5ForConditionalGeneration,
+    BartConfig,
+    BartTokenizer,
+    BartForConditionalGeneration,
 )
 
 from transformers.data.datasets.language_modeling import TextDataset, LineByLineTextDataset
@@ -101,8 +107,8 @@ MODEL_CLASSES = {
     "roberta": (RobertaConfig, RobertaForMaskedLM, RobertaTokenizer),
     "xlnet": (XLNetConfig, XLNetLMHeadModel, XLNetTokenizer),
     "transfo-xl": (TransfoXLConfig, TransfoXLLMHeadModel, TransfoXLTokenizer),
-    "bart": (AutoConfig, AutoModelWithLMHead, AutoTokenizer),
-    "t5": (AutoConfig, AutoModelWithLMHead, AutoTokenizer), 
+    "bart": (BartConfig, BartForConditionalGeneration, BartTokenizer),
+    "t5": (T5Config, T5ForConditionalGeneration, T5Tokenizer), 
 }
 
 class LanguageModelingModel:
@@ -198,7 +204,7 @@ class LanguageModelingModel:
         self.args["model_name"] = model_name
         self.args["model_type"] = model_type
 
-        config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
+        config_class, model_class,  _class = MODEL_CLASSES[model_type]
         self.tokenizer_class = tokenizer_class
         new_tokenizer = False
 

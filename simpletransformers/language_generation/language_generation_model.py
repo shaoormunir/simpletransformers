@@ -31,6 +31,12 @@ from transformers import (
     XLNetConfig,
     XLNetLMHeadModel,
     XLNetTokenizer,
+    T5Config,
+    T5Tokenizer,
+    T5ForConditionalGeneration,
+    BartConfig,
+    BartTokenizer,
+    BartForConditionalGeneration,
 )
 
 logger = logging.getLogger(__name__)
@@ -61,8 +67,8 @@ class LanguageGenerationModel:
             "xlnet": (XLNetConfig, XLNetLMHeadModel, XLNetTokenizer),
             "transfo-xl": (TransfoXLConfig, TransfoXLLMHeadModel, TransfoXLTokenizer),
             "xlm": (XLMConfig, XLMWithLMHeadModel, XLMTokenizer),
-            "bart": (AutoConfig, AutoModelWithLMHead, AutoTokenizer),
-            "t5": (AutoConfig, AutoModelWithLMHead, AutoTokenizer),
+            "bart": (BartConfig, BartForConditionalGeneration, BartTokenizer),
+            "t5": (T5Config, T5ForConditionalGeneration, T5Tokenizer),
         }
 
         if args and "manual_seed" in args:
