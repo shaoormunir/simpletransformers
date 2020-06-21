@@ -347,7 +347,7 @@ class LanguageModelingModel:
                 model_to_resize = self.model.module if hasattr(self.model, "module") else self.model
                 model_to_resize.resize_token_embeddings(len(self.tokenizer))
 
-        if model_type in ["camembert", "xlmroberta", "bart"]:
+        if model_type in ["camembert", "xlmroberta"]:
             warnings.warn(
                 f"use_multiprocessing automatically disabled as {model_type}"
                 " fails when using multiprocessing for feature conversion."
@@ -904,13 +904,13 @@ class LanguageModelingModel:
             elif dataset_type == "line_by_line":
                 return LineByLineTextDataset(tokenizer, file_path, args["block_size"])
             else:
-                special_tokens_count = 3 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta", "bart"]) else 2
+                special_tokens_count = 3 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta"]) else 2
                 if self.args["max_seq_length"] > 509 and self.args["model_type"] != "longformer":
                     self.args["max_seq_length"] = (
-                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta", "bart"]) else 510
+                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta"]) else 510
                     )
                     self.args["block_size"] = (
-                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta", "bart"]) else 510
+                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta"]) else 510
                     )
                 return SimpleDataset(
                     tokenizer,
