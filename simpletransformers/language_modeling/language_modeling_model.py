@@ -578,6 +578,7 @@ class LanguageModelingModel:
                 
                 logger.error (type(loss))
                 logger.error(loss)
+                logger.error(loss.shape)
                 current_loss = loss.item()
 
                 if show_running_loss:
@@ -903,13 +904,13 @@ class LanguageModelingModel:
             elif dataset_type == "line_by_line":
                 return LineByLineTextDataset(tokenizer, file_path, args["block_size"])
             else:
-                special_tokens_count = 3 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta"]) else 2
+                special_tokens_count = 3 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta", "bart"]) else 2
                 if self.args["max_seq_length"] > 509 and self.args["model_type"] != "longformer":
                     self.args["max_seq_length"] = (
-                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta"]) else 510
+                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta", "bart"]) else 510
                     )
                     self.args["block_size"] = (
-                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta"]) else 510
+                        509 if bool(args["model_type"] in ["roberta", "camembert", "xlmroberta", "bart"]) else 510
                     )
                 return SimpleDataset(
                     tokenizer,
