@@ -576,9 +576,10 @@ class LanguageModelingModel:
                 if args["n_gpu"] > 1:
                     loss = loss.mean()  # mean() to average on multi-gpu parallel training
                 
-                logger.error (type(loss))
-                logger.error(loss)
-                logger.error(loss.shape)
+                if args['model_type'] == 'bart':
+                    logger.error (type(loss))
+                    logger.error(loss)
+                    logger.error(loss.shape)
                 current_loss = loss.item()
 
                 if show_running_loss:
