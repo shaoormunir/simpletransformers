@@ -347,7 +347,7 @@ class LanguageModelingModel:
                 model_to_resize = self.model.module if hasattr(self.model, "module") else self.model
                 model_to_resize.resize_token_embeddings(len(self.tokenizer))
 
-        if model_type in ["camembert", "xlmroberta"]:
+        if model_type in ["camembert", "xlmroberta", "bart"]:
             warnings.warn(
                 f"use_multiprocessing automatically disabled as {model_type}"
                 " fails when using multiprocessing for feature conversion."
