@@ -67,6 +67,9 @@ from transformers import (
     XLNetConfig,
     XLNetTokenizer,
     get_linear_schedule_with_warmup,
+    GPT2Config,
+    GPT2LMHeadModel,
+    GPT2Tokenizer,
 )
 
 try:
@@ -83,7 +86,6 @@ class ClassificationModel:
     def __init__(
         self, model_type, model_name, num_labels=None, weight=None, args=None, use_cuda=True, cuda_device=-1, **kwargs,
     ):
-
         """
         Initializes a ClassificationModel model.
 
@@ -110,6 +112,7 @@ class ClassificationModel:
             "xlnet": (XLNetConfig, XLNetForSequenceClassification, XLNetTokenizer),
             "xlm": (XLMConfig, XLMForSequenceClassification, XLMTokenizer),
             "xlmroberta": (XLMRobertaConfig, XLMRobertaForSequenceClassification, XLMRobertaTokenizer),
+            "gpt2": (GPT2Config, GPT2LMHeadModel, GPT2Tokenizer),
         }
 
         if args and "manual_seed" in args:
